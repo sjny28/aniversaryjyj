@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Año y Medio Juntos ❤️</title>
+    <style>
+        /* --- ESTILOS GENERALES Y ANIMACIONES DE FONDO --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+            position: relative; /* Necesario para los corazones y estrellas */
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b6b; /* Un rojo más vibrante para los corazones */
+            animation: float 6s infinite linear;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- ESTILOS DEL ENCABEZADO --- */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* --- CONTADOR DE AMOR --- */
+        .love-counter {
+            text-align: center;
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .counter-number {
+            font-size: 4em;
+            font-weight: bold;
+            color: #ffd93d; /* Amarillo brillante */
+            text-shadow: 0 0 20px rgba(255, 217, 61, 0.5);
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- SECCIÓN DE TARJETAS DE RECUERDOS --- */
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: slideInUp 0.8s ease-out;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Para que la imagen no se desborde al escalar */
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .memory-card.revealed {
+            animation: flipIn 0.6s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes flipIn {
+            0% {
+                transform: rotateY(90deg);
+                opacity: 0;
+            }
+            100% {
+                transform: rotateY(0deg);
+                opacity: 1;
+            }
+        }
+
+        .memory-title {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffd93d; /* Amarillo brillante para títulos */
+            text-shadow: 0 0 10px rgba(255, 217, 61, 0.3);
+        }
+
+        .reveal-button {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d); /* Degradado de rojo a amarillo */
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .reveal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.2); /* Fondo oscuro para imágenes */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Para que la imagen se ajuste sin cortarse */
+            transition: transform 0.3s ease;
+            border-radius: 15px; /* Bordes redondeados para la imagen */
+        }
+
+        .photo-container:hover img {
+            transform: scale(1.05); /* Zoom al pasar el ratón */
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2); /* Degradado de fondo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* --- CARTA SECRETA --- */
+        .secret-letter {
+            text-align: center;
+            margin: 80px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .secret-letter::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4); /* Borde animado */
+            border-radius: 22px;
+            z-index: -1;
+            animation: borderGlow 3s infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .letter-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 1.3em;
+            line-height: 1.8;
+            text-align: left;
+            margin-top: 20px;
+            animation: fadeInUp 1s ease-out;
+            max-height: 0; /* Para la animación de despliegue */
+            overflow: hidden; /* Oculta el contenido antes de revelarse */
+            transition: max-height 0.8s ease-out, padding 0.8s ease-out;
+        }
+
+        .letter-content.revealed-content {
+            max-height: 1000px; /* Suficientemente grande para contener el contenido */
+            padding: 30px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- SECCIÓN DE COLLAGE ROMÁNTICO --- */
+        .collage-section {
+            text-align: center;
+            margin: 80px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            opacity: 0; /* Inicialmente oculto */
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .collage-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .collage-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #4ecdc4, #6bcf7f, #ffd93d, #ff6b6b); /* Borde animado reverso */
+            border-radius: 22px;
+            z-index: -1;
+            animation: borderGlow 3s infinite reverse;
+        }
+
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Más grande para el efecto */
+            gap: 20px; /* Mayor espacio entre imágenes */
+            margin-top: 30px;
+            position: relative;
+            padding: 20px; /* Padding para evitar que las imágenes roten fuera */
+        }
+
+        .collage-item {
+            width: 100%;
+            height: 250px; /* Altura más sustancial para las imágenes */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, z-index 0.1s ease;
+            position: relative;
+            border: 3px solid white; /* Un pequeño borde blanco */
+        }
+
+        /* Efectos de rotación para las imágenes del collage */
+        .collage-item:nth-child(3n+1) { transform: rotate(-8deg); }
+        .collage-item:nth-child(3n+2) { transform: rotate(5deg); top: 15px; } /* Desplazamiento y rotación diferentes */
+        .collage-item:nth-child(3n) { transform: rotate(-3deg); }
+        .collage-item:nth-child(2) { top: -10px; } /* Ajuste individual para una imagen */
+
+        .collage-item:hover {
+            transform: scale(1.15) rotate(0deg) !important; /* Zoom y enderezar en hover */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Sombra más grande en hover */
+            z-index: 10; /* Traer al frente */
+        }
+
+        .collage-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Para cubrir el espacio sin distorsionar */
+            display: block; /* Eliminar espacio extra bajo la imagen */
+        }
+
+        .collage-message {
+            font-size: 2.8em; /* Mensaje más grande */
+            color: #ff6b6b; /* Rojo vibrante */
+            margin-top: 50px;
+            font-weight: bold;
+            text-shadow: 0 0 25px rgba(255, 107, 107, 0.8); /* Sombra más intensa */
+            animation: pulse 2s infinite;
+        }
+
+        .heart-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8em; /* Corazón más grande */
+            color: rgba(255, 107, 107, 0.5); /* Corazón semitransparente */
+            opacity: 0;
+            animation: fadeInOutHeart 3s infinite alternate;
+            pointer-events: none; /* Asegura que no interfiera con clics */
+        }
+
+        @keyframes fadeInOutHeart {
+            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .memories-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .header .subtitle {
+                font-size: 1.2em;
+            }
+
+            .memory-card {
+                padding: 20px;
+                min-height: 300px;
+            }
+
+            .photo-container {
+                height: 280px;
+            }
+
+            .memory-title {
+                font-size: 1.3em;
+            }
+
+            .reveal-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+
+            .love-counter {
+                margin: 30px 0;
+                padding: 25px;
+            }
+
+            .counter-number {
+                font-size: 3em;
+            }
+
+            .secret-letter {
+                margin: 50px 0;
+                padding: 25px;
+            }
+
+            .letter-content {
+                font-size: 1.1em;
+                padding: 20px;
+            }
+
+            .collage-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Ajuste para móviles */
+                gap: 10px;
+            }
+
+            .collage-item {
+                height: 180px;
+            }
+
+            .collage-message {
+                font-size: 2.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .memory-card {
+                padding: 15px;
+                min-height: 280px;
+            }
+
+            .photo-container {
+                height: 250px;
+            }
+
+            .memory-title {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+
+            .reveal-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .counter-number {
+                font-size: 2.5em;
+            }
+
+            .secret-letter {
+                padding: 20px;
+            }
+
+            .letter-content {
+                font-size: 1em;
+                padding: 15px;
+            }
+
+            .collage-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 8px;
+            }
+
+            .collage-item {
+                height: 150px;
+            }
+
+            .collage-message {
+                font-size: 1.8em;
+            }
+
+            .heart-overlay {
+                font-size: 6em;
+            }
+
+            .letter-content.revealed-content {
+                max-height: 2000px !important; /* Más alto para móviles */
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="floating-hearts"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>1 Año y Medio Juntos</h1>
+            <p class="subtitle">Un viaje lleno de amor y recuerdos ❤️</p>
+        </div>
+
+        <div class="love-counter">
+            <div class="counter-number" id="daysCounter">548</div>
+            <p>Días de amor y felicidad</p>
+        </div>
+
+        <div class="memories-grid">
+            <div class="memory-card" onclick="revealMemory(1)">
+                <div class="memory-title">💕 Nuestra primera foto juntos</div>
+                <div class="photo-container" id="photoContainer1">
+                    <div class="photo-placeholder">Haz clic para revelar</div>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="revealMemory(2)">
+                <div class="memory-title">🌹 Cuando aceptaste ser mi amada</div>
+                <div class="photo-container" id="photoContainer2">
+                    <div class="photo-placeholder">Haz clic para revelar</div>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="revealMemory(3)">
+                <div class="memory-title">😊 Mi primer "robo" frustrado</div>
+                <div class="photo-container" id="photoContainer3">
+                    <div class="photo-placeholder">Haz clic para revelar</div>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="revealMemory(4)">
+                <div class="memory-title">🎉 Nuestro primer mes juntitos</div>
+                <div class="photo-container" id="photoContainer4">
+                    <div class="photo-placeholder">Haz clic para revelar</div>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="revealMemory(5)">
+                <div class="memory-title">💖 Nuestros 6 meses</div>
+                <div class="photo-container" id="photoContainer5">
+                    <div class="photo-placeholder">Haz clic para revelar</div>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="revealMemory(6)">
+                <div class="memory-title">🎂 Nuestro añito</div>
+                <div class="photo-container" id="photoContainer6">
+                    <div class="photo-placeholder">Haz clic para revelar</div>
+                </div>
+            </div>
+
+            <div class="memory-card" onclick="revealMemory(7)">
+                <div class="memory-title">🌟 Nuestras aventuras</div>
+                <div class="photo-container" id="photoContainer7">
+                    <div class="photo-placeholder">Haz clic para revelar</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="secret-letter">
+            <h2>💌 Hay algo más para ti...</h2>
+            <button class="reveal-button" onclick="revealLetter()" id="letterButton">Descubrir carta secreta</button>
+            <div class="letter-content" id="secretLetter">
+                <p>Mi amor,</p>
+                <br>
+                <p>Estos 18 meses a tu lado han sido los más increíbles de mi vida. Cada día contigo es una nueva aventura, cada sonrisa tuya ilumina mi mundo, y cada momento juntos se convierte en un tesoro que guardo en mi corazón.</p>
+                <br>
+                <p>Desde nuestra primera foto juntos hasta todas las aventuras que hemos vivido, has llenado mi vida de amor, risas y una felicidad que no sabía que era posible sentir. Eres mi compañera de vida, mi mejor amiga, mi amor verdadero.</p>
+                <br>
+                <p>Gracias por aceptar ser mi amada, por todos los momentos especiales que hemos compartido, por cada abrazo, cada beso, cada "te amo" susurrado en la oscuridad. Gracias por ser exactamente quien eres.</p>
+                <br>
+                <p>Espero que estos sean solo los primeros de muchos años más llenos de amor, aventuras y recuerdos hermosos. Te amo más de lo que las palabras pueden expresar.</p>
+                <br>
+                <p>Para siempre tuyo,</p>
+                <p style="color: #ffd93d; font-weight: bold;">Tu amor ❤️</p>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="reveal-button hidden" onclick="showCollage()" id="collageButton">¡Sorpresa!</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="collage-section hidden" id="collageSection">
+            <div class="heart-overlay">💖</div>
+            <h2>✨ ¡Feliz Año y Medio, Mi Amor! ✨</h2>
+            <div class="collage-grid" id="photoCollage">
+                </div>
+            <p class="collage-message">¡Te Amo Infinito Mi Vida!</p>
+        </div>
+    </div>
+
+    <script>
+        // Objeto con las rutas de tus imágenes
+        // Asegúrate de que estas imágenes estén en una carpeta llamada 'images'
+        // en el mismo directorio que este archivo HTML.
+        const imagePaths = {
+            1: "images/1.jpeg",
+            2: "images/2.jpeg",
+            3: "images/3.jpeg",
+            4: "images/4.jpeg",
+            5: "images/5.jpeg",
+            6: "images/6.jpeg",
+            7: "images/7.jpg"
+        };
+
+        // Puedes añadir más imágenes para el collage aquí.
+        // Se usarán estas imágenes para el collage, además de las de los recuerdos.
+        const collageImagePaths = [
+            "images/collage1.jpeg", // Puedes cambiar o añadir más, ej. images/8.jpg, images/9.jpg
+            "images/collage2.jpeg",
+            "images/collage3.jpeg",
+            "images/collage4.jpeg",
+            "images/collage5.jpeg",
+            "images/collage6.jpeg",
+            "images/collage7.jpg",
+            "images/collage8.jpeg",
+            "images/collage9.jpeg",
+            "images/collage10.jpeg"
+            // Agrega más rutas si tienes más imágenes para el collage
+        ];
+
+        let memoriesRevealed = 0;
+        const revealedCards = Array(8).fill(false); // Para controlar qué tarjetas se han revelado
+
+        // Inicia la cuenta de días al cargar la página
+        window.onload = function() {
+            startDayCounter();
+            createStars();
+            createFloatingHearts();
+            // Cargar las imágenes en los placeholders al inicio, sin mostrarlas
+            for (let i = 1; i <= 7; i++) {
+                const imgContainer = document.getElementById(`photoContainer${i}`);
+                const placeholder = imgContainer.querySelector('.photo-placeholder');
+                placeholder.textContent = 'Haz clic para revelar'; // Asegura el texto inicial
+            }
+        };
+
+        // --- FUNCIONES DE EFECTOS DE FONDO ---
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        function createFloatingHearts() {
+            const heartsContainer = document.querySelector('.floating-hearts');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 6) + 's';
+                heartsContainer.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }, 2000); // Crea un corazón cada 2 segundos
+        }
+
+        // --- CONTADOR DE DÍAS ---
+        function startDayCounter() {
+            // Fecha de inicio de la relación (1 año y medio atrás desde hoy)
+            // Asumiendo que hoy es 3 de julio de 2025, la fecha de inicio sería 3 de enero de 2024
+            const startDate = new Date('2024-01-03T00:00:00');
+            const today = new Date();
+            const timeDifference = today.getTime() - startDate.getTime();
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            animateCounter(days);
+        }
+
+        function animateCounter(targetDays) {
+            const counterElement = document.getElementById('daysCounter');
+            let currentDays = 0;
+            const duration = 2000; // 2 segundos
+            const stepTime = 10;
+            const steps = duration / stepTime;
+            const increment = targetDays / steps;
+
+            const timer = setInterval(() => {
+                currentDays += increment;
+                if (currentDays >= targetDays) {
+                    currentDays = targetDays;
+                    clearInterval(timer);
+                }
+                counterElement.textContent = Math.floor(currentDays);
+            }, stepTime);
+        }
+
+        // --- REVELAR TARJETAS DE RECUERDOS ---
+        function revealMemory(index) {
+            if (revealedCards[index]) {
+                return; // Si ya está revelada, no hacer nada
+            }
+
+            const imgPath = imagePaths[index];
+            const photoContainer = document.getElementById(`photoContainer${index}`);
+            const memoryCard = photoContainer.closest('.memory-card');
+
+            if (imgPath) {
+                const imgElement = document.createElement('img');
+                imgElement.src = imgPath;
+                imgElement.alt = `Recuerdo ${index}`;
+
+                // Determinar la orientación de la imagen para aplicar estilos
+                imgElement.onload = () => {
+                    if (imgElement.naturalWidth > imgElement.naturalHeight) {
+                        photoContainer.classList.add('landscape');
+                    } else if (imgElement.naturalHeight > imgElement.naturalWidth) {
+                        photoContainer.classList.add('portrait');
+                    } else {
+                        photoContainer.classList.add('square');
+                    }
+                    photoContainer.innerHTML = ''; // Limpiar el placeholder
+                    photoContainer.appendChild(imgElement);
+                    memoryCard.classList.add('revealed'); // Añadir clase para la animación de flip
+                    revealedCards[index] = true; // Marcar como revelada
+                    memoriesRevealed++;
+
+                    // Si todas las tarjetas están reveladas, mostrar el botón de la carta
+                    if (memoriesRevealed === Object.keys(imagePaths).length) {
+                        const letterButton = document.getElementById('letterButton');
+                        letterButton.classList.remove('hidden');
+                        letterButton.style.animation = 'fadeInUp 1s ease-out'; // Animación para el botón
+                    }
+                };
+                imgElement.onerror = () => {
+                    photoContainer.innerHTML = '<div class="photo-placeholder">Error al cargar la imagen. Asegúrate que <b>images/' + index + '.jpg/.png</b> existe.</div>';
+                };
+            } else {
+                photoContainer.innerHTML = '<div class="photo-placeholder">Imagen no disponible.</div>';
+            }
+        }
+
+        // --- REVELAR CARTA SECRETA ---
+        function revealLetter() {
+            const letterContent = document.getElementById('secretLetter');
+            const letterButton = document.getElementById('letterButton');
+            const collageButton = document.getElementById('collageButton');
+
+            if (letterContent.classList.contains('revealed-content')) {
+                // Si la carta ya está abierta, no hacer nada o quizás cerrarla
+                // Para este caso, solo nos aseguramos que el botón de sorpresa esté visible si ya se abrió
+                collageButton.classList.remove('hidden');
+                collageButton.style.animation = 'fadeInUp 1s ease-out';
+                return;
+            }
+
+            letterContent.classList.add('revealed-content');
+            letterContent.style.animation = 'fadeInUp 1s ease-out'; // Animación de aparición
+            letterButton.classList.add('hidden'); // Ocultar el botón "Descubrir carta"
+
+            // Mostrar el botón "¡Sorpresa!" después de un pequeño retraso
+            setTimeout(() => {
+                collageButton.classList.remove('hidden');
+                collageButton.style.animation = 'fadeInUp 1s ease-out';
+            }, 1000); // Aparece 1 segundo después de que la carta se despliegue
+        }
+
+        // --- MOSTRAR COLLAGE ---
+        function showCollage() {
+            const collageSection = document.getElementById('collageSection');
+            const photoCollage = document.getElementById('photoCollage');
+
+            // Cargar las imágenes del collage
+            photoCollage.innerHTML = ''; // Limpiar cualquier contenido previo
+            collageImagePaths.forEach((path, index) => {
+                const collageItem = document.createElement('div');
+                collageItem.classList.add('collage-item');
+
+                const img = document.createElement('img');
+                img.src = path;
+                img.alt = `Collage Image ${index + 1}`;
+                collageItem.appendChild(img);
+                photoCollage.appendChild(collageItem);
+            });
+
+            collageSection.classList.remove('hidden');
+            collageSection.classList.add('visible'); // Activa la animación de entrada
+            document.getElementById('secretLetter').classList.remove('revealed-content'); // Opcional: esconder la carta
+            document.getElementById('secretLetter').classList.add('hidden'); // Ocultar la carta después de ver el collage
+        }
+    </script>
+</body>
+</html>
